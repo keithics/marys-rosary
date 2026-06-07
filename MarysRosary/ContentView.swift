@@ -4,7 +4,9 @@ struct ContentView: View {
     private let rosary = Rosary.standard
     @State private var currentBead = 0
     @State private var currentPrayer = 0
+    @AppStorage("zoomMode") private var modeRaw: String = ZoomMode.focused.rawValue
     @State private var mode: ZoomMode = .focused
+    private func setMode(_ m: ZoomMode) { mode = m; modeRaw = m.rawValue }
     @State private var isPlaying = false
     @State private var hasStarted = false
 
@@ -12,42 +14,66 @@ struct ContentView: View {
     // Off by default — reserved for future implementation.
     @State private var learningMode: Bool = false
     @State private var showCompletion = false
+    @State private var showQueue = false
 
     private let navy = Color(red: 0.16, green: 0.20, blue: 0.34)
     private var bead: Bead { rosary.sequence[min(currentBead, rosary.sequence.count - 1)] }
     private var prayer: Prayer? { bead.prayers.indices.contains(currentPrayer) ? bead.prayers[currentPrayer] : bead.prayers.first }
 
     var body: some View {
-        ZStack {
-            SkyBackground()
+        GeometryReader { geo in
+            ZStack {
+                SkyBackground()
 
-            RosaryView(rosary: rosary, current: $currentBead, mode: $mode, learningMode: $learningMode)
+                RosaryView(rosary: rosary, current: $currentBead, mode: $mode, learningMode: $learningMode)
 
-            prayerLabel
-
-            VStack {
-                Spacer()
                 if hasStarted {
-                    controlBar
-                        .padding(.bottom, 36)
-                } else {
-                    startButton
-                        .padding(.bottom, 48)
-                }
-            }
+                    if mode == .full {
+                        // In full view: card floats inside the rosary oval
+                        VStack(spacing: 0) {
+                            Spacer().frame(height: geo.size.height * 0.13)
+                            prayerCard(glass: false)
+                                .frame(maxWidth: geo.size.width * 0.58, maxHeight: geo.size.height * 0.38)
+                            Spacer()
+                        }
+                        .frame(maxWidth: .infinity)
+                    } else {
+                        // In focused view: card anchored below the active bead
+                        VStack(spacing: 0) {
+                            Spacer().frame(height: geo.size.height * 0.33)
+                            prayerCard()
+                                .frame(maxHeight: geo.size.height * 0.45)
+                                .padding(.horizontal, 20)
+                            Spacer()
+                        }
+                    }
 
-            // Zoom toggle — top-right
-            VStack {
-                HStack {
-                    Spacer()
-                    zoomToggle
+                    // Controls pinned to bottom
+                    VStack {
+                        Spacer()
+                        controlBar.padding(.bottom, 36)
+                    }
+                } else {
+                    VStack {
+                        Spacer()
+                        startButton.padding(.bottom, 48)
+                    }
                 }
-                Spacer()
+
+                // Zoom toggle — top-right
+                VStack {
+                    HStack {
+                        Spacer()
+                        zoomToggle
+                    }
+                    Spacer()
+                }
+                .padding(.top, 60)
+                .padding(.trailing, 20)
             }
-            .padding(.top, 60)
-            .padding(.trailing, 20)
         }
         .ignoresSafeArea()
+        .onAppear { mode = ZoomMode(rawValue: modeRaw) ?? .focused }
         .fullScreenCover(isPresented: $showCompletion) {
             CompletionView(mysteryType: rosary.mysteryType) {
                 showCompletion = false
@@ -55,7 +81,6 @@ struct ContentView: View {
                 currentPrayer = 0
                 hasStarted = false
                 isPlaying = false
-                mode = .focused
             }
         }
     }
@@ -86,14 +111,30 @@ struct ContentView: View {
     // MARK: - Playback controls
 
     private var controlBar: some View {
-        VStack(spacing: 12) {
-            // Step indicator
-            Text(pillText)
-                .font(.system(size: 13, weight: .medium, design: .serif))
-                .foregroundStyle(navy.opacity(0.6))
+        VStack(spacing: 10) {
+            // Step counter centered, queue button pinned right
+            ZStack {
+                Text(pillText)
+                    .font(.system(size: 13, weight: .medium, design: .serif))
+                    .foregroundStyle(navy.opacity(0.6))
+                    .frame(maxWidth: .infinity, alignment: .center)
 
-            // Back | Play-Pause | Next
-            HStack(spacing: 40) {
+                HStack {
+                    Spacer()
+                    Button { showQueue = true } label: {
+                        Image(systemName: "list.bullet")
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundStyle(navy.opacity(0.7))
+                            .frame(width: 32, height: 32)
+                            .background(Circle().fill(.white.opacity(0.85)))
+                            .shadow(color: .black.opacity(0.08), radius: 5, y: 2)
+                    }
+                }
+            }
+            .padding(.horizontal, 24)
+
+            // Centered ⏮ ⏸/▶ ⏭ pill
+            HStack(spacing: 28) {
                 Button { goBack() } label: {
                     Image(systemName: "backward.fill")
                         .font(.system(size: 22, weight: .medium))
@@ -121,10 +162,29 @@ struct ContentView: View {
                         .frame(width: 44, height: 44)
                 }
             }
-            .padding(.horizontal, 40)
+            .padding(.horizontal, 28)
             .padding(.vertical, 14)
             .background(Capsule().fill(.white.opacity(0.85)))
             .shadow(color: .black.opacity(0.10), radius: 10, y: 4)
+        }
+        .sheet(isPresented: $showQueue) {
+            QueueSheet(
+                rosary: rosary,
+                currentBead: currentBead,
+                onSelect: { beadIndex in
+                    withAnimation(.easeInOut(duration: 0.5)) {
+                        currentBead = beadIndex
+                        currentPrayer = 0
+                    }
+                    showQueue = false
+                },
+                onStop: {
+                    showQueue = false
+                    resetPrayer()
+                }
+            )
+            .presentationDetents([.medium, .large])
+            .presentationDragIndicator(.visible)
         }
     }
 
@@ -133,7 +193,7 @@ struct ContentView: View {
     private var zoomToggle: some View {
         Button {
             withAnimation(.easeInOut(duration: 0.6)) {
-                mode = (mode == .full) ? .focused : .full
+                setMode(mode == .full ? .focused : .full)
             }
         } label: {
             Image(systemName: mode == .full ? "plus.magnifyingglass" : "minus.magnifyingglass")
@@ -145,33 +205,56 @@ struct ContentView: View {
         }
     }
 
-    // MARK: - Prayer label
+    // MARK: - Prayer card (liquid glass)
 
-    private var prayerLabel: some View {
-        VStack(spacing: 10) {
-            Text((prayer?.title ?? "") + "…")
-                .font(.system(size: 30, weight: .regular, design: .serif))
-                .foregroundStyle(navy)
+    private func prayerCard(glass: Bool = true) -> some View {
+        VStack(alignment: .center, spacing: 0) {
+            // Title + step badge
+            HStack(alignment: .center, spacing: 8) {
+                Text(prayer?.title ?? "")
+                    .font(.system(size: 17, weight: .semibold, design: .serif))
+                    .foregroundStyle(navy)
 
-            HStack(spacing: 12) {
-                divider
-                Image(systemName: "sparkle")
-                    .font(.system(size: 11))
-                    .foregroundStyle(Color(red: 0.78, green: 0.62, blue: 0.28))
-                divider
+                if let step = bead.decadeStep {
+                    Text("\(step)/10")
+                        .font(.system(size: 11, weight: .medium))
+                        .foregroundStyle(navy.opacity(0.50))
+                        .padding(.horizontal, 7)
+                        .padding(.vertical, 3)
+                        .background(Capsule().fill(navy.opacity(0.08)))
+                }
             }
-            .frame(width: 150)
+            .frame(maxWidth: .infinity, alignment: .center)
+            .padding(.horizontal, 16)
+            .padding(.top, 14)
+            .padding(.bottom, 10)
+
+            Divider().opacity(0.25).padding(.horizontal, 16)
+
+            // Full prayer text — sizes to content, scrollable when text overflows
+            ScrollView(showsIndicators: false) {
+                Text(prayer?.text ?? "")
+                    .font(.system(size: 14, weight: .regular, design: .serif))
+                    .foregroundStyle(navy.opacity(0.78))
+                    .multilineTextAlignment(.center)
+                    .lineSpacing(5)
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 12)
+            }
+            .fixedSize(horizontal: false, vertical: true)
         }
+        .background(glass ? AnyShapeStyle(.ultraThinMaterial) : AnyShapeStyle(.clear),
+                    in: RoundedRectangle(cornerRadius: 22))
+        .overlay(
+            RoundedRectangle(cornerRadius: 22)
+                .strokeBorder(.white.opacity(glass ? 0.45 : 0), lineWidth: 1)
+        )
+        .shadow(color: .black.opacity(glass ? 0.08 : 0), radius: 12, y: 4)
         .id("\(currentBead)-\(currentPrayer)")
         .transition(.opacity)
         .animation(.easeInOut(duration: 0.3), value: currentPrayer)
         .animation(.easeInOut(duration: 0.3), value: currentBead)
-    }
-
-    private var divider: some View {
-        Rectangle()
-            .fill(navy.opacity(0.35))
-            .frame(height: 1)
     }
 
     // MARK: - Helpers
@@ -198,7 +281,6 @@ struct ContentView: View {
                 } else {
                     currentBead = next
                     currentPrayer = 0
-                    mode = .focused
                 }
             }
         }
@@ -208,20 +290,29 @@ struct ContentView: View {
         withAnimation(.easeInOut(duration: 0.5)) {
             if currentPrayer > 0 {
                 currentPrayer -= 1
-            } else {
-                var prev = (currentBead - 1 + rosary.sequence.count) % rosary.sequence.count
-                while rosary.sequence[prev].isVisualOnly {
-                    prev = (prev - 1 + rosary.sequence.count) % rosary.sequence.count
+            } else if currentBead > 0 {
+                var prev = currentBead - 1
+                while prev > 0 && rosary.sequence[prev].isVisualOnly {
+                    prev -= 1
                 }
                 currentBead = prev
                 currentPrayer = rosary.sequence[currentBead].prayers.count - 1
-                mode = .focused
             }
+            // at bead 0, prayer 0 — do nothing
         }
     }
 
     private func togglePlay() {
         isPlaying.toggle()
+    }
+
+    private func resetPrayer() {
+        withAnimation(.easeInOut(duration: 0.4)) {
+            currentBead = 0
+            currentPrayer = 0
+            hasStarted = false
+            isPlaying = false
+        }
     }
 }
 

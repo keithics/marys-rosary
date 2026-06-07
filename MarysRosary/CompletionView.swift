@@ -20,25 +20,23 @@ struct CompletionView: View {
 
     var body: some View {
         ZStack {
+            // Sky base so image fades into light background
             SkyBackground().ignoresSafeArea()
+
+            // Background image at 40% so it reads as a watermark
+            Image("CompletedMedal")
+                .resizable()
+                .scaledToFill()
+                .ignoresSafeArea()
+                .opacity(appeared ? 0.40 : 0)
 
             VStack(spacing: 0) {
                 Spacer()
 
-                // Medal
-                Image("MadonnaMedal")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 110)
-                    .shadow(color: .black.opacity(0.25), radius: 12, y: 6)
-                    .scaleEffect(appeared ? 1 : 0.6)
-                    .opacity(appeared ? 1 : 0)
-
-                Spacer().frame(height: 32)
-
                 Text("Rosary Complete")
-                    .font(.system(size: 28, weight: .light, design: .serif))
+                    .font(.system(size: 32, weight: .light, design: .serif))
                     .foregroundStyle(navy)
+                    .shadow(color: .white.opacity(0.6), radius: 6, x: 0, y: 0)
                     .opacity(appeared ? 1 : 0)
 
                 Spacer().frame(height: 6)
@@ -46,6 +44,7 @@ struct CompletionView: View {
                 Text(mysteryType.displayName)
                     .font(.system(size: 15, weight: .medium, design: .serif))
                     .foregroundStyle(gold)
+                    .shadow(color: .white.opacity(0.8), radius: 4, x: 0, y: 0)
                     .opacity(appeared ? 1 : 0)
 
                 Spacer().frame(height: 28)
@@ -60,9 +59,11 @@ struct CompletionView: View {
 
                 Text(blessing)
                     .font(.system(size: 15, weight: .regular, design: .serif))
-                    .foregroundStyle(navy.opacity(0.75))
+                    .foregroundStyle(navy.opacity(0.80))
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal, 44)
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal, 36)
+                    .shadow(color: .white.opacity(0.7), radius: 4, x: 0, y: 0)
                     .opacity(appeared ? 1 : 0)
 
                 Spacer()
@@ -77,7 +78,7 @@ struct CompletionView: View {
                     .foregroundStyle(navy)
                     .padding(.horizontal, 36)
                     .padding(.vertical, 14)
-                    .background(Capsule().fill(.white.opacity(0.90)))
+                    .background(Capsule().fill(.white.opacity(0.92)))
                     .shadow(color: .black.opacity(0.12), radius: 10, y: 4)
                 }
                 .opacity(appeared ? 1 : 0)
@@ -93,7 +94,7 @@ struct CompletionView: View {
 
     private var line: some View {
         Rectangle()
-            .fill(navy.opacity(0.30))
+            .fill(navy.opacity(0.25))
             .frame(height: 1)
     }
 

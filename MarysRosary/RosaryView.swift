@@ -1,7 +1,7 @@
 import SwiftUI
 
 /// Whether the whole rosary is shown, or the view is zoomed in on the current bead.
-enum ZoomMode {
+enum ZoomMode: String {
     case full
     case focused
 }
@@ -145,7 +145,7 @@ struct RosaryView: View {
         case .focused:
             let s: CGFloat = 1.45
             let target = points[min(current, points.count - 1)]
-            let anchor = CGPoint(x: size.width / 2, y: size.height * 0.34)
+            let anchor = CGPoint(x: size.width / 2, y: size.height * 0.22)
             return Camera(scale: s,
                           offset: CGSize(width: anchor.x - target.x * s,
                                          height: anchor.y - target.y * s))
