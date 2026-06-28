@@ -115,6 +115,7 @@ struct Bead: Identifiable {
     let kind: BeadKind
     let prayers: [Prayer]
     let decadeStep: Int?        // 1-10 for Hail Mary beads within a decade
+    let decadeTotal: Int?       // 3 for opening/closing Hail Marys, 10 for decades
     var isVisualOnly: Bool      // true for extra beads from singular `prayer` — shown but skipped in navigation
 
     var primaryPrayer: Prayer? { prayers.first }
@@ -172,15 +173,16 @@ struct Rosary {
             if let singularId = desc.prayer {
                 let resolved = resolve([singularId])
                 return (0..<repeatCount).map { i in
-                    Bead(kind: kind, prayers: resolved, decadeStep: nil, isVisualOnly: i > 0)
+                    Bead(kind: kind, prayers: resolved, decadeStep: nil, decadeTotal: nil, isVisualOnly: i > 0)
                 }
             }
 
             var beads: [Bead] = []
             for i in 0..<repeatCount {
                 let step: Int? = (kind == .gold && repeatCount > 1) ? (i + 1) : nil
+                let total: Int? = (kind == .gold && repeatCount > 1) ? repeatCount : nil
                 let resolvedPrayers = resolve(desc.prayers, decadeStep: step)
-                beads.append(Bead(kind: kind, prayers: resolvedPrayers, decadeStep: step, isVisualOnly: false))
+                beads.append(Bead(kind: kind, prayers: resolvedPrayers, decadeStep: step, decadeTotal: total, isVisualOnly: false))
             }
             return beads
         }

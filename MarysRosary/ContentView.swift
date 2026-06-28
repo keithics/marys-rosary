@@ -215,8 +215,8 @@ struct ContentView: View {
                     .font(.system(size: 17, weight: .semibold, design: .serif))
                     .foregroundStyle(navy)
 
-                if let step = bead.decadeStep {
-                    Text("\(step)/10")
+                if let step = bead.decadeStep, let total = bead.decadeTotal {
+                    Text("\(step)/\(total)")
                         .font(.system(size: 11, weight: .medium))
                         .foregroundStyle(navy.opacity(0.50))
                         .padding(.horizontal, 7)
