@@ -153,11 +153,22 @@ struct RosaryView: View {
             let box = boundingBox(points, pad: pad)
             let s = min(size.width / box.width, (size.height * 0.9) / box.height)
             let target = CGPoint(x: box.midX, y: box.midY)
-            let anchor = CGPoint(x: size.width / 2, y: size.height * 0.46)
+            let anchorY = fullViewAnchorY(in: size)
+            let anchor = CGPoint(x: size.width / 2, y: anchorY)
             return Camera(scale: s,
                           offset: CGSize(width: anchor.x - target.x * s,
                                          height: anchor.y - target.y * s))
         }
+    }
+
+    private func fullViewAnchorY(in size: CGSize) -> CGFloat {
+        // The first loop marker after the opening decade carries the second mystery.
+        // The fourth loop marker carries the fifth mystery before the closing prayers.
+        let secondMysteryBeadIndex = rosary.tailCount + 1 + 10
+        let fifthMysteryBeadIndex = rosary.tailCount + 1 + (4 * 11) - 1
+        let shouldRaiseRosary = current <= secondMysteryBeadIndex || current >= fifthMysteryBeadIndex
+        let anchorRatio: CGFloat = shouldRaiseRosary ? 0.37 : 0.54
+        return size.height * anchorRatio
     }
 
     private func boundingBox(_ points: [CGPoint], pad: CGFloat) -> CGRect {

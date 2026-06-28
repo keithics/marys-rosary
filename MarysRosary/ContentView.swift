@@ -4,6 +4,7 @@ struct ContentView: View {
     private let rosary = Rosary.standard
     @State private var currentBead = 0
     @State private var currentPrayer = 0
+    @State private var currentText = 0
     @AppStorage("zoomMode") private var modeRaw: String = ZoomMode.focused.rawValue
     @State private var mode: ZoomMode = .focused
     private func setMode(_ m: ZoomMode) { mode = m; modeRaw = m.rawValue }
@@ -19,6 +20,10 @@ struct ContentView: View {
     private let navy = Color(red: 0.16, green: 0.20, blue: 0.34)
     private var bead: Bead { rosary.sequence[min(currentBead, rosary.sequence.count - 1)] }
     private var prayer: Prayer? { bead.prayers.indices.contains(currentPrayer) ? bead.prayers[currentPrayer] : bead.prayers.first }
+    private var prayerText: String {
+        guard let prayer else { return "" }
+        return prayer.texts.indices.contains(currentText) ? prayer.texts[currentText] : ""
+    }
 
     var body: some View {
         GeometryReader { geo in
@@ -31,9 +36,9 @@ struct ContentView: View {
                     if mode == .full {
                         // In full view: card floats inside the rosary oval
                         VStack(spacing: 0) {
-                            Spacer().frame(height: geo.size.height * 0.13)
+                            Spacer().frame(height: geo.size.height * 0.14)
                             prayerCard(glass: false)
-                                .frame(maxWidth: geo.size.width * 0.58, maxHeight: geo.size.height * 0.38)
+                                .frame(maxWidth: geo.size.width * 0.52, maxHeight: geo.size.height * 0.38)
                             Spacer()
                         }
                         .frame(maxWidth: .infinity)
@@ -79,9 +84,11 @@ struct ContentView: View {
                 showCompletion = false
                 currentBead = 0
                 currentPrayer = 0
+                currentText = 0
                 hasStarted = false
                 isPlaying = false
             }
+            .ignoresSafeArea()
         }
     }
 
@@ -112,23 +119,15 @@ struct ContentView: View {
 
     private var controlBar: some View {
         VStack(spacing: 10) {
-            // Step counter centered, queue button pinned right
-            ZStack {
-                Text(pillText)
-                    .font(.system(size: 13, weight: .medium, design: .serif))
-                    .foregroundStyle(navy.opacity(0.6))
-                    .frame(maxWidth: .infinity, alignment: .center)
-
-                HStack {
-                    Spacer()
-                    Button { showQueue = true } label: {
-                        Image(systemName: "list.bullet")
-                            .font(.system(size: 16, weight: .medium))
-                            .foregroundStyle(navy.opacity(0.7))
-                            .frame(width: 32, height: 32)
-                            .background(Circle().fill(.white.opacity(0.85)))
-                            .shadow(color: .black.opacity(0.08), radius: 5, y: 2)
-                    }
+            HStack {
+                Spacer()
+                Button { showQueue = true } label: {
+                    Image(systemName: "list.bullet")
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundStyle(navy.opacity(0.7))
+                        .frame(width: 32, height: 32)
+                        .background(Circle().fill(.white.opacity(0.85)))
+                        .shadow(color: .black.opacity(0.08), radius: 5, y: 2)
                 }
             }
             .padding(.horizontal, 24)
@@ -175,6 +174,7 @@ struct ContentView: View {
                     withAnimation(.easeInOut(duration: 0.5)) {
                         currentBead = beadIndex
                         currentPrayer = 0
+                        currentText = 0
                     }
                     showQueue = false
                 },
@@ -222,6 +222,13 @@ struct ContentView: View {
                         .padding(.horizontal, 7)
                         .padding(.vertical, 3)
                         .background(Capsule().fill(navy.opacity(0.08)))
+                } else if let prayer, prayer.texts.count > 1 {
+                    Text("\(currentText + 1)/\(prayer.texts.count)")
+                        .font(.system(size: 11, weight: .medium))
+                        .foregroundStyle(navy.opacity(0.50))
+                        .padding(.horizontal, 7)
+                        .padding(.vertical, 3)
+                        .background(Capsule().fill(navy.opacity(0.08)))
                 }
             }
             .frame(maxWidth: .infinity, alignment: .center)
@@ -231,18 +238,19 @@ struct ContentView: View {
 
             Divider().opacity(0.25).padding(.horizontal, 16)
 
-            // Full prayer text — sizes to content, scrollable when text overflows
+            // Prayer text is top-aligned and constrained so long prayers do not
+            // spill into the rosary artwork in expanded mode.
             ScrollView(showsIndicators: false) {
-                Text(prayer?.text ?? "")
+                Text(prayerText)
                     .font(.system(size: 14, weight: .regular, design: .serif))
                     .foregroundStyle(navy.opacity(0.78))
                     .multilineTextAlignment(.center)
                     .lineSpacing(5)
-                    .frame(maxWidth: .infinity)
+                    .frame(maxWidth: .infinity, alignment: .top)
                     .padding(.horizontal, 20)
                     .padding(.vertical, 12)
             }
-            .fixedSize(horizontal: false, vertical: true)
+            .frame(maxHeight: .infinity, alignment: .top)
         }
         .background(glass ? AnyShapeStyle(.ultraThinMaterial) : AnyShapeStyle(.clear),
                     in: RoundedRectangle(cornerRadius: 22))
@@ -251,26 +259,23 @@ struct ContentView: View {
                 .strokeBorder(.white.opacity(glass ? 0.45 : 0), lineWidth: 1)
         )
         .shadow(color: .black.opacity(glass ? 0.08 : 0), radius: 12, y: 4)
-        .id("\(currentBead)-\(currentPrayer)")
+        .id("\(currentBead)-\(currentPrayer)-\(currentText)")
         .transition(.opacity)
+        .animation(.easeInOut(duration: 0.3), value: currentText)
         .animation(.easeInOut(duration: 0.3), value: currentPrayer)
         .animation(.easeInOut(duration: 0.3), value: currentBead)
     }
 
     // MARK: - Helpers
 
-    private var pillText: String {
-        if let step = bead.decadeStep { return "\(step) / 10" }
-        if bead.prayers.count > 1 {
-            return "\(currentPrayer + 1) / \(bead.prayers.count)"
-        }
-        return "✦"
-    }
-
     private func goNext() {
         withAnimation(.easeInOut(duration: 0.5)) {
-            if currentPrayer < bead.prayers.count - 1 {
+            let texts = prayer?.texts ?? []
+            if currentText < texts.count - 1 {
+                currentText += 1
+            } else if currentPrayer < bead.prayers.count - 1 {
                 currentPrayer += 1
+                currentText = 0
             } else {
                 var next = (currentBead + 1) % rosary.sequence.count
                 while rosary.sequence[next].isVisualOnly {
@@ -281,6 +286,7 @@ struct ContentView: View {
                 } else {
                     currentBead = next
                     currentPrayer = 0
+                    currentText = 0
                 }
             }
         }
@@ -288,8 +294,11 @@ struct ContentView: View {
 
     private func goBack() {
         withAnimation(.easeInOut(duration: 0.5)) {
-            if currentPrayer > 0 {
+            if currentText > 0 {
+                currentText -= 1
+            } else if currentPrayer > 0 {
                 currentPrayer -= 1
+                currentText = max(bead.prayers[currentPrayer].texts.count - 1, 0)
             } else if currentBead > 0 {
                 var prev = currentBead - 1
                 while prev > 0 && rosary.sequence[prev].isVisualOnly {
@@ -297,6 +306,7 @@ struct ContentView: View {
                 }
                 currentBead = prev
                 currentPrayer = rosary.sequence[currentBead].prayers.count - 1
+                currentText = max(rosary.sequence[currentBead].prayers[currentPrayer].texts.count - 1, 0)
             }
             // at bead 0, prayer 0 — do nothing
         }
@@ -310,6 +320,7 @@ struct ContentView: View {
         withAnimation(.easeInOut(duration: 0.4)) {
             currentBead = 0
             currentPrayer = 0
+            currentText = 0
             hasStarted = false
             isPlaying = false
         }

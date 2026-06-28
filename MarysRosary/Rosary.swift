@@ -5,8 +5,35 @@ import Foundation
 struct Prayer: Codable {
     let id: String
     let title: String
-    let text: String
+    let texts: [String]
     let mp3: String?
+
+    init(id: String, title: String, texts: [String], mp3: String?) {
+        self.id = id
+        self.title = title
+        self.texts = texts
+        self.mp3 = mp3
+    }
+
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(String.self, forKey: .id)
+        title = try c.decode(String.self, forKey: .title)
+        texts = try c.decode([String].self, forKey: .text)
+        mp3 = try c.decodeIfPresent(String.self, forKey: .mp3)
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var c = encoder.container(keyedBy: CodingKeys.self)
+        try c.encode(id, forKey: .id)
+        try c.encode(title, forKey: .title)
+        try c.encode(texts, forKey: .text)
+        try c.encodeIfPresent(mp3, forKey: .mp3)
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case id, title, text, mp3
+    }
 }
 
 struct Mystery: Codable {
@@ -124,7 +151,7 @@ struct Rosary {
                     // Wrap mystery in a Prayer so the UI can display it uniformly.
                     return Prayer(id: "mystery_\(mysteryIndex)",
                                   title: m.title,
-                                  text: m.text,
+                                  texts: [m.text],
                                   mp3: m.mp3)
                 }
                 return prayers[id]
