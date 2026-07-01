@@ -1,0 +1,149 @@
+[
+  {
+    "id": "apostles_creed",
+    "title": "Apostles' Creed",
+    "text": [
+      {
+        "text": "I believe in God, the Father almighty, creator of heaven and earth. I believe in Jesus Christ, his only Son, our Lord. He was conceived by the power of the Holy Spirit and born of the Virgin Mary.",
+        "audio": "creed_1"
+      },
+      {
+        "text": "He suffered under Pontius Pilate, was crucified, died, and was buried. He descended to the dead. On the third day he rose again. He ascended into heaven and is seated at the right hand of the Father. He will come again to judge the living and the dead.",
+        "audio": "creed_2"
+      },
+      {
+        "text": "I believe in the Holy Spirit, the holy Catholic Church, the communion of saints, the forgiveness of sins, the resurrection of the body, and the life everlasting.\n\nAmen.",
+        "type": "response",
+        "defaultResponseSeconds": 8
+      }
+    ]
+  },
+  {
+    "id": "our_father",
+    "title": "Our Father",
+    "text": [
+      {
+        "text": "Our Father, Who art in Heaven, hallowed be Thy Name. Thy kingdom come, Thy will be done on earth as it is in Heaven.",
+        "audio": "ourfather_1"
+      },
+      {
+        "text": "Give us this day our daily bread, and forgive us our trespasses, as we forgive those who trespass against us. And lead us not into temptation, but deliver us from evil.\n\nAmen.",
+        "type": "response",
+        "defaultResponseSeconds": 8
+      }
+    ]
+  },
+  {
+    "id": "hail_mary",
+    "title": "Hail Mary",
+    "text": [
+      {
+        "text": "Hail Mary, full of grace, the Lord is with thee. Blessed art thou among women, and blessed is the fruit of thy womb, Jesus.",
+        "audio": "hailmary_1"
+      },
+      {
+        "text": "Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death.\n\nAmen.",
+        "type": "response",
+        "defaultResponseSeconds": 5
+      }
+    ]
+  },
+  {
+    "id": "glory_be",
+    "title": "Glory Be",
+    "text": [
+      {
+        "text": "Glory Be to the Father, and to the Son, and to the Holy Spirit.",
+        "audio": "glorybe_1"
+      },
+      {
+        "text": "As it was in the beginning, is now, and ever shall be, world without end.\n\nAmen.",
+        "type": "response",
+        "defaultResponseSeconds": 4
+      }
+    ]
+  },
+  {
+    "id": "fatima_prayer",
+    "title": "Fatima Prayer",
+    "text": [
+      {
+        "text": "O my Jesus, forgive us our sins, save us from the fires of Hell; lead all souls to Heaven, especially those most in need of Thy mercy.\n\nAmen.",
+        "audio": "fatima_1"
+      }
+    ]
+  },
+  {
+    "id": "hail_holy_queen",
+    "title": "Hail Holy Queen",
+    "text": [
+      {
+        "text": "Hail, Holy Queen, Mother of Mercy, hail, our life, our sweetness, and our hope! To thee do we cry, poor banished children of Eve. To thee do we send up our sighs, mourning and weeping in this valley of tears.",
+        "audio": "hailholyqueen_1"
+      },
+      {
+        "text": "Turn then, most gracious advocate, thine eyes of mercy towards us; and after this our exile, show unto us the blessed fruit of thy womb, Jesus. O clement, O loving, O sweet Virgin Mary.",
+        "audio": "hailholyqueen_2"
+      }
+    ]
+  },
+  {
+    "id": "sign_of_the_cross",
+    "title": "Sign of the Cross",
+    "text": [
+      {
+        "text": "In the Name of the Father, and of the Son, and of the Holy Spirit.\n\nAmen.",
+        "audio": "signofthecross_1"
+      }
+    ]
+  },
+  {
+    "id": "holy_rosary",
+    "title": "The Holy Rosary",
+    "text": [
+      {
+        "text": "There is no problem, I tell you, no matter how difficult it is, that we cannot resolve by the prayer of the Holy Rosary.\n\n- Sister Lucia, Fatima seer, 1917",
+        "audio": "intro_1"
+      }
+    ]
+  },
+  {
+    "id": "pray_for_us",
+    "title": "Pray for Us",
+    "text": [
+      {
+        "text": "Pray for us, O Holy Mother of God,",
+        "audio": "prayforus_1"
+      },
+      {
+        "text": "That we may be made worthy of the promises of Christ.\n\nAmen.",
+        "type": "response",
+        "defaultResponseSeconds": 3
+      }
+    ]
+  },
+  {
+    "id": "ending_prayer",
+    "title": "Closing Prayer",
+    "text": [
+      {
+        "text": "Let us pray. O God, Whose only-begotten Son by His life, death and resurrection has purchased for us the rewards of eternal life;\nGrant, we beseech Thee, that by meditating upon these mysteries of the Most Holy Rosary of the Blessed Virgin Mary, we may imitate what they contain and obtain what they promise, through the same Christ our Lord.\n\nAmen.",
+        "audio": "ending_1"
+      },
+      {
+        "text": "May the Divine assistance remain always with us, and may all the souls of the faithful departed through the mercy of God rest in peace.\n\nAmen.",
+        "audio": "ending_2"
+      }
+    ]
+  },
+  {
+    "id": "popes_intentions",
+    "title": "For the Pope's Intentions",
+    "text": [
+      {
+        "text": "For the intentions of our Holy Father the Pope.",
+        "audio": "popeintro_1"
+      }
+    ]
+  }
+]

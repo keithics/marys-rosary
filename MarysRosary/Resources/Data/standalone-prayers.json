@@ -1,0 +1,268 @@
+[
+  {
+    "id": "daily",
+    "group": "Daily Prayers",
+    "icon": "sun.max.fill",
+    "prayers": [
+      {
+        "id": "sign_of_the_cross",
+        "title": "Sign of the Cross",
+        "texts": [
+          "In the Name of the Father, and of the Son, and of the Holy Spirit.\n\nAmen."
+        ]
+      },
+      {
+        "id": "our_father",
+        "title": "Our Father",
+        "texts": [
+          "Our Father, Who art in Heaven, hallowed be Thy Name. Thy kingdom come, Thy will be done on earth as it is in Heaven.",
+          "Give us this day our daily bread, and forgive us our trespasses, as we forgive those who trespass against us. And lead us not into temptation, but deliver us from evil.\n\nAmen."
+        ]
+      },
+      {
+        "id": "hail_mary",
+        "title": "Hail Mary",
+        "texts": [
+          "Hail Mary, full of grace, the Lord is with thee. Blessed art thou among women, and blessed is the fruit of thy womb, Jesus.",
+          "Holy Mary, Mother of God, pray for us sinners, now and at the hour of our death.\n\nAmen."
+        ]
+      },
+      {
+        "id": "glory_be",
+        "title": "Glory Be",
+        "texts": [
+          "Glory Be to the Father, and to the Son, and to the Holy Spirit.",
+          "As it was in the beginning, is now, and ever shall be, world without end.\n\nAmen."
+        ]
+      },
+      {
+        "id": "morning_offering",
+        "title": "Morning Offering",
+        "texts": [
+          "O Jesus, through the Immaculate Heart of Mary, I offer You my prayers, works, joys, and sufferings of this day in union with the Holy Sacrifice of the Mass throughout the world.",
+          "I offer them for all the intentions of Your Sacred Heart: the salvation of souls, reparation for sin, and the reunion of all Christians. I offer them for the intentions of our bishops and of all Apostles of Prayer, and in particular for those recommended by our Holy Father this month.\n\nAmen."
+        ]
+      },
+      {
+        "id": "act_of_contrition",
+        "title": "Act of Contrition",
+        "texts": [
+          "O my God, I am heartily sorry for having offended Thee, and I detest all my sins because of Thy just punishments, but most of all because they offend Thee, my God, Who art all good and deserving of all my love.",
+          "I firmly resolve, with the help of Thy grace, to sin no more and to avoid the near occasions of sin.\n\nAmen."
+        ]
+      },
+      {
+        "id": "act_of_faith",
+        "title": "Act of Faith",
+        "texts": [
+          "O my God, I firmly believe that Thou art one God in three Divine Persons: Father, Son, and Holy Spirit.",
+          "I believe that Thy Divine Son became man and died for our sins, and that He will come to judge the living and the dead. I believe these and all the truths which the Holy Catholic Church teaches, because Thou hast revealed them, Who canst neither deceive nor be deceived.\n\nAmen."
+        ]
+      },
+      {
+        "id": "act_of_hope",
+        "title": "Act of Hope",
+        "texts": [
+          "O my God, relying on Thy almighty power and infinite mercy and promises, I hope to obtain pardon of my sins, the help of Thy grace, and life everlasting, through the merits of Jesus Christ, my Lord and Redeemer.\n\nAmen."
+        ]
+      },
+      {
+        "id": "act_of_love",
+        "title": "Act of Love",
+        "texts": [
+          "O my God, I love Thee above all things, with my whole heart and soul, because Thou art all good and worthy of all love.",
+          "I love my neighbor as myself for the love of Thee. I forgive all who have injured me and ask pardon of all whom I have injured.\n\nAmen."
+        ]
+      },
+      {
+        "id": "grace_before_meals",
+        "title": "Grace Before Meals",
+        "texts": [
+          "Bless us, O Lord, and these Thy gifts, which we are about to receive from Thy bounty, through Christ our Lord.\n\nAmen."
+        ]
+      },
+      {
+        "id": "grace_after_meals",
+        "title": "Grace After Meals",
+        "texts": [
+          "We give Thee thanks for all Thy benefits, O Almighty God, Who livest and reignest forever; and may the souls of the faithful departed, through the mercy of God, rest in peace.\n\nAmen."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "marian",
+    "group": "Marian Prayers",
+    "icon": "staroflife.fill",
+    "prayers": [
+      {
+        "id": "hail_holy_queen",
+        "title": "Hail Holy Queen",
+        "texts": [
+          "Hail, Holy Queen, Mother of Mercy, hail, our life, our sweetness, and our hope! To you do we cry, poor banished children of Eve. To you do we send up our sighs, mourning and weeping in this valley of tears.",
+          "Turn then, most gracious advocate, your eyes of mercy towards us; and after this our exile, show unto us the blessed fruit of your womb, Jesus. O clement, O loving, O sweet Virgin Mary.",
+          "Pray for us, O Holy Mother of God, that we may be made worthy of the promises of Christ.\n\nAmen."
+        ]
+      },
+      {
+        "id": "memorare",
+        "title": "The Memorare",
+        "texts": [
+          "Remember, O most gracious Virgin Mary, that never was it known that anyone who fled to thy protection, implored thy help, or sought thine intercession was left unaided.",
+          "Inspired by this confidence, I fly unto thee, O Virgin of virgins, my mother; to thee do I come, before thee I stand, sinful and sorrowful. O Mother of the Word Incarnate, despise not my petitions, but in thy mercy hear and answer me.\n\nAmen."
+        ]
+      },
+      {
+        "id": "angelus",
+        "title": "The Angelus",
+        "texts": [
+          "The Angel of the Lord declared to Mary, and she conceived of the Holy Spirit.\n\nHail Mary...",
+          "Behold the handmaid of the Lord. Be it done unto me according to Thy word.\n\nHail Mary...",
+          "And the Word was made Flesh, and dwelt among us.\n\nHail Mary...",
+          "Pray for us, O Holy Mother of God, that we may be made worthy of the promises of Christ.",
+          "Pour forth, we beseech Thee, O Lord, Thy grace into our hearts; that we, to whom the Incarnation of Christ, Thy Son, was made known by the message of an angel, may by His Passion and Cross be brought to the glory of His Resurrection, through the same Christ our Lord.\n\nAmen."
+        ]
+      },
+      {
+        "id": "regina_caeli",
+        "title": "Regina Caeli",
+        "texts": [
+          "Queen of Heaven, rejoice, alleluia. For He Whom you did merit to bear, alleluia, has risen, as He said, alleluia.",
+          "Pray for us to God, alleluia.",
+          "Rejoice and be glad, O Virgin Mary, alleluia! For the Lord has truly risen, alleluia.",
+          "O God, Who gave joy to the world through the Resurrection of Thy Son, our Lord Jesus Christ; grant, we beseech Thee, that through the intercession of the Virgin Mary, His Mother, we may obtain the joys of everlasting life, through the same Christ our Lord.\n\nAmen."
+        ]
+      },
+      {
+        "id": "sub_tuum",
+        "title": "Sub Tuum Praesidium",
+        "texts": [
+          "We fly to thy patronage, O holy Mother of God; despise not our petitions in our necessities, but deliver us always from all dangers, O glorious and blessed Virgin.\n\nAmen."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "angels_saints",
+    "group": "Angels & Saints",
+    "icon": "sparkles",
+    "prayers": [
+      {
+        "id": "guardian_angel",
+        "title": "Guardian Angel Prayer",
+        "texts": [
+          "Angel of God, my guardian dear, to whom God's love commits me here,",
+          "Ever this day be at my side, to light and guard, to rule and guide.\n\nAmen."
+        ]
+      },
+      {
+        "id": "st_michael",
+        "title": "Prayer to St. Michael",
+        "texts": [
+          "Saint Michael the Archangel, defend us in battle. Be our defense against the wickedness and snares of the Devil.",
+          "May God rebuke him, we humbly pray, and do thou, O Prince of the heavenly hosts, by the power of God, thrust into hell Satan and all the evil spirits who prowl about the world seeking the ruin of souls.\n\nAmen."
+        ]
+      },
+      {
+        "id": "st_joseph",
+        "title": "Prayer to St. Joseph",
+        "texts": [
+          "O Blessed Saint Joseph, faithful guardian of my Redeemer, Jesus Christ, protector of thy chaste spouse, the Virgin Mother of God, I choose thee this day to be my special patron and advocate.",
+          "Preserve me from every sin, strengthen me in virtue, guide and assist me by thy powerful intercession all the days of my life.\n\nAmen."
+        ]
+      },
+      {
+        "id": "st_therese",
+        "title": "Prayer to St. Thérèse",
+        "texts": [
+          "O Little Thérèse of the Child Jesus, please pick for me a rose from the heavenly gardens and send it to me as a message of love.",
+          "O Little Flower of Jesus, ask God today to grant the favors I now place with confidence in your hands. St. Thérèse, help me to always believe as you did, in God's great love for me, so that I might imitate your Little Way each day.\n\nAmen."
+        ]
+      },
+      {
+        "id": "st_patrick",
+        "title": "St. Patrick's Breastplate",
+        "texts": [
+          "Christ with me, Christ before me, Christ behind me, Christ in me,",
+          "Christ beneath me, Christ above me, Christ on my right, Christ on my left,",
+          "Christ when I lie down, Christ when I sit down, Christ when I arise,",
+          "Christ in the heart of every man who thinks of me, Christ in the mouth of everyone who speaks of me, Christ in every eye that sees me, Christ in every ear that hears me.\n\nAmen."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "rosary",
+    "group": "Rosary Prayers",
+    "icon": "circle.dotted",
+    "prayers": [
+      {
+        "id": "apostles_creed",
+        "title": "Apostles' Creed",
+        "texts": [
+          "I believe in God, the Father almighty, creator of heaven and earth. I believe in Jesus Christ, his only Son, our Lord.",
+          "He was conceived by the power of the Holy Spirit and born of the Virgin Mary. He suffered under Pontius Pilate, was crucified, died, and was buried. He descended to the dead.",
+          "On the third day he rose again. He ascended into heaven and is seated at the right hand of the Father. He will come again to judge the living and the dead.",
+          "I believe in the Holy Spirit, the holy Catholic Church, the communion of saints, the forgiveness of sins, the resurrection of the body, and the life everlasting.\n\nAmen."
+        ]
+      },
+      {
+        "id": "fatima_prayer",
+        "title": "Fatima Prayer",
+        "texts": [
+          "O my Jesus, forgive us our sins, save us from the fires of Hell; lead all souls to Heaven, especially those in most need of Thy mercy.\n\nAmen."
+        ]
+      },
+      {
+        "id": "closing_prayer",
+        "title": "Closing Prayer",
+        "texts": [
+          "O God, Whose only-begotten Son by His life, death and resurrection has purchased for us the rewards of eternal life;",
+          "Grant, we beseech Thee, that by meditating upon these mysteries of the Most Holy Rosary of the Blessed Virgin Mary, we may imitate what they contain and obtain what they promise, through the same Christ our Lord.\n\nAmen."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "special",
+    "group": "Special Intentions",
+    "icon": "heart.fill",
+    "prayers": [
+      {
+        "id": "divine_mercy",
+        "title": "Divine Mercy Chaplet",
+        "texts": [
+          "You expired, Jesus, but the source of life gushed forth for souls, and the ocean of mercy opened up for the whole world.",
+          "Eternal Father, I offer You the Body and Blood, Soul and Divinity of Your dearly beloved Son, Our Lord Jesus Christ, in atonement for our sins and those of the whole world.",
+          "For the sake of His sorrowful Passion, have mercy on us and on the whole world.\n\n(Repeat 'For the sake of His sorrowful Passion' 10 times on each decade.)",
+          "Holy God, Holy Mighty One, Holy Immortal One, have mercy on us and on the whole world.\n\nAmen."
+        ]
+      },
+      {
+        "id": "souls_purgatory",
+        "title": "For the Holy Souls",
+        "texts": [
+          "Eternal rest grant unto them, O Lord, and let perpetual light shine upon them.",
+          "May the souls of the faithful departed, through the mercy of God, rest in peace.\n\nAmen."
+        ]
+      },
+      {
+        "id": "for_peace",
+        "title": "Prayer for Peace",
+        "texts": [
+          "Lord, make me an instrument of Your peace. Where there is hatred, let me sow love; where there is injury, pardon; where there is doubt, faith; where there is despair, hope; where there is darkness, light; where there is sadness, joy.",
+          "O Divine Master, grant that I may not so much seek to be consoled as to console; to be understood as to understand; to be loved as to love.",
+          "For it is in giving that we receive; it is in pardoning that we are pardoned; and it is in dying that we are born to eternal life.\n\nAmen.\n\n— St. Francis of Assisi"
+        ]
+      },
+      {
+        "id": "for_sick",
+        "title": "Prayer for the Sick",
+        "texts": [
+          "O Father of goodness, I ask You to bless those who are sick and suffering. Comfort them in their pain, strengthen them in their weakness, and grant them the healing that is best for their body and soul.",
+          "May they know they are not alone, for You are always with them. Through Christ our Lord.\n\nAmen."
+        ]
+      }
+    ]
+  }
+]

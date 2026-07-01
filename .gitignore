@@ -1,0 +1,24 @@
+# Xcode
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+xcuserdata/
+DerivedData/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# Build
+build/
+*.o
+*.d
+
+# OS
+.DS_Store
+
+# Generated assets (source files, not needed in repo)
+generated-assets/
+focused.png
+full.png
+magic1.png
+magic2.png

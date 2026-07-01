@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "golden-bead-luminous.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
