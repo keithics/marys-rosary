@@ -26,7 +26,6 @@ import AVFoundation
         guard player == nil,
               let url = Bundle.main.url(forResource: "avemaria", withExtension: "m4a") else { return }
         do {
-            try AVAudioSession.sharedInstance().setCategory(.playback, options: .mixWithOthers)
             player = try AVAudioPlayer(contentsOf: url)
             player?.numberOfLoops = -1
             applyVolume()
