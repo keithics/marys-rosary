@@ -42,7 +42,7 @@ struct RosaryView: View {
     @Binding var current: Int
     @Binding var zoomLevel: Double
     @Binding var learningMode: Bool
-    @AppStorage("showMagicEffect") private var showMagicEffect = false
+    @AppStorage("showMagicEffect") private var showMagicEffect = true
 
     var body: some View {
         GeometryReader { geo in

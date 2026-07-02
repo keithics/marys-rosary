@@ -3,7 +3,7 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject private var delayStore: PrayerDelayStore
     @EnvironmentObject private var bgMusic: BackgroundMusicPlayer
-    @AppStorage("showMagicEffect") private var showMagicEffect = false
+    @AppStorage("showMagicEffect") private var showMagicEffect = true
     @AppStorage("showPrayerProgress") private var showPrayerProgress = true
     @State private var vm = SettingsViewModel()
     @State private var showInfo = false
