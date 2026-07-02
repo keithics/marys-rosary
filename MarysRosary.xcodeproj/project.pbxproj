@@ -6,6 +6,26 @@
 	objectVersion = 70;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		BB0000000000000000000059 /* MarysRosaryWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000001 /* MarysRosaryWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BB0000000000000000000061 /* LiturgicalCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000010 /* LiturgicalCalendar.swift */; };
+		BB0000000000000000000062 /* MysteryTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000011 /* MysteryTheme.swift */; };
+		BB0000000000000000000063 /* Rosary.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000012 /* Rosary.swift */; };
+		BB0000000000000000000064 /* mysteries.json in Resources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000030 /* mysteries.json */; };
+		BB0000000000000000000065 /* prayers.json in Resources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000031 /* prayers.json */; };
+		BB0000000000000000000066 /* layout.json in Resources */ = {isa = PBXBuildFile; fileRef = BB0000000000000000000032 /* layout.json */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BB0000000000000000000058 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA0000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BB0000000000000000000053;
+			remoteInfo = MarysRosaryWidget;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		BB0000000000000000000041 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -13,6 +33,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				BB0000000000000000000059 /* MarysRosaryWidget.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -39,6 +60,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		AA0000000000000000000008 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB0000000000000000000051 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -97,6 +125,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BB0000000000000000000057 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				AA0000000000000000000006 /* MarysRosary */,
@@ -105,6 +134,26 @@
 			productName = MarysRosary;
 			productReference = AA0000000000000000000005 /* MarysRosary.app */;
 			productType = "com.apple.product-type.application";
+		};
+		BB0000000000000000000053 /* MarysRosaryWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB0000000000000000000056 /* Build configuration list for PBXNativeTarget "MarysRosaryWidget" */;
+			buildPhases = (
+				BB0000000000000000000050 /* Sources */,
+				BB0000000000000000000051 /* Frameworks */,
+				BB0000000000000000000052 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				BB0000000000000000000002 /* MarysRosaryWidget */,
+			);
+			name = MarysRosaryWidget;
+			productName = MarysRosaryWidget;
+			productReference = BB0000000000000000000001 /* MarysRosaryWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -117,6 +166,9 @@
 				LastUpgradeCheck = 2650;
 				TargetAttributes = {
 					AA0000000000000000000004 = {
+						CreatedOnToolsVersion = 26.5;
+					};
+					BB0000000000000000000053 = {
 						CreatedOnToolsVersion = 26.5;
 					};
 				};
@@ -136,6 +188,7 @@
 			projectRoot = "";
 			targets = (
 				AA0000000000000000000004 /* MarysRosary */,
+				BB0000000000000000000053 /* MarysRosaryWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -145,6 +198,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB0000000000000000000052 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB0000000000000000000064 /* mysteries.json in Resources */,
+				BB0000000000000000000065 /* prayers.json in Resources */,
+				BB0000000000000000000066 /* layout.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,7 +221,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BB0000000000000000000050 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB0000000000000000000061 /* LiturgicalCalendar.swift in Sources */,
+				BB0000000000000000000062 /* MysteryTheme.swift in Sources */,
+				BB0000000000000000000063 /* Rosary.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BB0000000000000000000057 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BB0000000000000000000053 /* MarysRosaryWidget */;
+			targetProxy = BB0000000000000000000058 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		AA000000000000000000000C /* Debug */ = {
@@ -208,11 +289,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MarysRosary/MarysRosary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 2CCZGNUB5H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = MarysRosary-Info.plist;
+				INFOPLIST_FILE = "MarysRosary-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -234,11 +315,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = MarysRosary/MarysRosary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 2CCZGNUB5H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = MarysRosary-Info.plist;
+				INFOPLIST_FILE = "MarysRosary-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -247,6 +328,60 @@
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.webninja.rosary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		BB0000000000000000000054 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
+				DEVELOPMENT_TEAM = 2CCZGNUB5H;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MarysRosaryWidget-Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../../Frameworks",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.webninja.rosary.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		BB0000000000000000000055 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 6;
+				DEVELOPMENT_TEAM = 2CCZGNUB5H;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = MarysRosaryWidget-Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../../Frameworks",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.webninja.rosary.widget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -270,6 +405,15 @@
 			buildConfigurations = (
 				AA000000000000000000000E /* Debug */,
 				AA000000000000000000000F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BB0000000000000000000056 /* Build configuration list for PBXNativeTarget "MarysRosaryWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB0000000000000000000054 /* Debug */,
+				BB0000000000000000000055 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
