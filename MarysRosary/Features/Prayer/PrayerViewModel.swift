@@ -24,6 +24,7 @@ final class PrayerViewModel {
     var textProgress: Double = 0
 
     let audio = AudioPlayer()
+    let liveActivity = LiveActivityManager()
     private var playlist: [PrayerTrack] = []
     private var currentTrackIndex: Int = 0
     private var progressTimer: Timer?
@@ -53,6 +54,12 @@ final class PrayerViewModel {
         return segment.text.isEmpty ? (prayer.texts.first?.text ?? "") : segment.text
     }
 
+    // True once we've reached the first mystery announcement bead
+    var isInMysteries: Bool {
+        rosary.sequence[0..<min(currentBead + 1, rosary.sequence.count)]
+            .contains { $0.prayers.first?.id.hasPrefix("mystery_") == true }
+    }
+
     // MARK: - Playback
 
     func startPlayback(delayStore: PrayerDelayStore) {
@@ -66,6 +73,25 @@ final class PrayerViewModel {
         audio.loadQueue(fileNames: fileNames)
         audio.play()
         startProgressTimer()
+        liveActivity.start(mystery: rosary.mysteryType) { [weak self] in
+            guard let self else {
+                return RosaryActivityAttributes.ContentState(
+                    prayerName: "", isPlaying: false,
+                    beadIndex: 0, totalBeads: 0,
+                    textSegment: 1, totalSegments: 1,
+                    showMystery: false
+                )
+            }
+            return RosaryActivityAttributes.ContentState(
+                prayerName: self.prayer?.title ?? "",
+                isPlaying: self.isPlaying,
+                beadIndex: self.currentBead,
+                totalBeads: self.rosary.sequence.count,
+                textSegment: self.currentText + 1,
+                totalSegments: self.prayer?.texts.count ?? 1,
+                showMystery: self.isInMysteries
+            )
+        }
     }
 
     func togglePlay(bgMusic: BackgroundMusicPlayer) {
@@ -79,6 +105,8 @@ final class PrayerViewModel {
             bgMusic.pause()
             stopProgressTimer()
         }
+        liveActivity.push()
+        updateNowPlaying()
     }
 
     // MARK: - Navigation
@@ -126,6 +154,17 @@ final class PrayerViewModel {
         currentPrayer = track.prayerIndex
         currentText = track.textIndex
         textProgress = 0
+        liveActivity.push()
+        updateNowPlaying()
+    }
+
+    private func updateNowPlaying() {
+        NowPlayingManager.shared.update(
+            title: prayer?.title ?? "",
+            artist: rosary.mysteryType.displayName,
+            mysteryType: rosary.mysteryType,
+            isPlaying: isPlaying
+        )
     }
 
     private func buildPlaylist(delayStore: PrayerDelayStore) -> [PrayerTrack] {

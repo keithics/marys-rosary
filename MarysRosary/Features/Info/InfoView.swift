@@ -117,7 +117,7 @@ struct InfoView: View {
             .shadow(color: .black.opacity(0.06), radius: 8, y: 3)
             .padding(.horizontal, 16)
 
-            Text("© \(Calendar.current.component(.year, from: .now)) Web Ninja Technologies")
+            Text("© \(String(Calendar.current.component(.year, from: .now))) Web Ninja Technologies")
                 .font(.system(size: 11))
                 .foregroundStyle(today.theme.textSubtle.opacity(0.6))
         }

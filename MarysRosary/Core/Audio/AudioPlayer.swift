@@ -106,13 +106,13 @@ final class AudioPlayer: NSObject {
               let typeValue = info[AVAudioSessionInterruptionTypeKey] as? UInt,
               let type = AVAudioSession.InterruptionType(rawValue: typeValue) else { return }
         if type == .ended {
-            let optionsValue = info[AVAudioSessionInterruptionOptionKey] as? UInt ?? 0
-            let options = AVAudioSession.InterruptionOptions(rawValue: optionsValue)
-            if options.contains(.shouldResume) {
-                Task { @MainActor [weak self] in
-                    guard self?.isPlaying == true else { return }
-                    self?.player?.play()
-                }
+            // Force-reactivate regardless of shouldResume — widget extension intents
+            // steal the audio session briefly and don't set the shouldResume flag,
+            // which would otherwise leave audio dead and lose background execution.
+            try? AVAudioSession.sharedInstance().setActive(true)
+            Task { @MainActor [weak self] in
+                guard self?.isPlaying == true else { return }
+                self?.player?.play()
             }
         }
     }

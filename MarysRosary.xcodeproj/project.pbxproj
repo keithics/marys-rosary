@@ -344,7 +344,7 @@
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 2CCZGNUB5H;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = MarysRosaryWidget-Info.plist;
+				INFOPLIST_FILE = "MarysRosaryWidget-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -371,7 +371,7 @@
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 2CCZGNUB5H;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = MarysRosaryWidget-Info.plist;
+				INFOPLIST_FILE = "MarysRosaryWidget-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

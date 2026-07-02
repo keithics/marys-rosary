@@ -3,12 +3,12 @@
     { "kind": "crucifix", "prayers": ["sign_of_the_cross", "apostles_creed"] },
     { "kind": "pearl",    "prayers": ["our_father"] },
     { "kind": "gold",     "count": 3, "prayers": ["hail_mary"] },
-    { "kind": "pearl",    "prayers": ["glory_be"] },
+    { "kind": "pearl",    "prayers": ["glory_be", "fatima_prayer"] },
     { "kind": "medal",    "prayers": ["mystery", "our_father"] }
   ],
   "decade_template": [
     { "kind": "gold",  "count": 10, "prayers": ["hail_mary"] },
-    { "kind": "pearl", "prayers": ["glory_be", "fatima_prayer", "mystery"] }
+    { "kind": "pearl", "prayers": ["glory_be", "fatima_prayer", "mystery", "our_father"] }
   ],
   "final_decade": [
     { "kind": "gold", "count": 10, "prayers": ["hail_mary"] }

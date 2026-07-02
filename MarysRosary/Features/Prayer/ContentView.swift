@@ -88,6 +88,21 @@ struct ContentView: View {
             }
         }
         .ignoresSafeArea()
+        .onAppear {
+            DarwinNotifier.startListening()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .rosaryTogglePlay)) { _ in
+            guard vm.hasStarted && !vm.showCompletion else { return }
+            vm.togglePlay(bgMusic: bgMusic)
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .rosaryGoNext)) { _ in
+            guard vm.hasStarted && !vm.showCompletion else { return }
+            vm.goNext()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: .rosaryGoPrev)) { _ in
+            guard vm.hasStarted && !vm.showCompletion else { return }
+            vm.goBack()
+        }
         .onChange(of: vm.hasStarted) { _, started in
             guard started else { return }
             session.mystery = vm.rosary.mysteryType
@@ -98,6 +113,10 @@ struct ContentView: View {
             if showing {
                 vm.audio.stop()
                 bgMusic.stop()
+                vm.liveActivity.end()
+                NowPlayingManager.shared.clear()
+                session.bead = 0
+                session.prayerName = ""
             }
         }
         .onChange(of: vm.currentBead) {
@@ -108,6 +127,8 @@ struct ContentView: View {
         .onDisappear {
             vm.audio.stop()
             bgMusic.stop()
+            vm.liveActivity.end()
+            NowPlayingManager.shared.clear()
         }
         .fullScreenCover(isPresented: $vm.showCompletion) {
             CompletionView(mysteryType: vm.rosary.mysteryType) {
